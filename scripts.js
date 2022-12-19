@@ -8,6 +8,7 @@ function getComputerChoice () {
     return cpuChoice.toUpperCase();
 }
 
+// Function to get the player's choice from the input 
 function getPlayerSelection () {
     let playerChoice = prompt("Please Select Rock, Paper, or Scissors");
 
@@ -18,6 +19,7 @@ function getPlayerSelection () {
     }
 }
 
+// Function to play a round of the game and prints the result in the console
 function playRound () {
     getPlayerSelection();
     getComputerChoice();
@@ -45,6 +47,7 @@ function playRound () {
     }
 }
 
+// Funtcion to run a game of 5 rounds
 function game() {
     for (let i = 0; i < 5; i++) {
         console.log(playRound());
@@ -52,6 +55,7 @@ function game() {
      }
 }
 
+// Function to reset the game before playing again
 function reset() {
     cpuChoice = getComputerChoice();
     return cpuChoice;
