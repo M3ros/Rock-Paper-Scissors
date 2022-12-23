@@ -1,64 +1,100 @@
-const choices = ["Rock", "Paper", "Scissors"];
-let playerChoice = getPlayerSelection().toUpperCase();
+const choices = ["ROCK", "PAPER", "SCISSORS"];
 let cpuChoice = getComputerChoice();
+let playerSelections = "";
+let compChoiceInt = 0;
+let playerChoiceInt = 0;
+const buttons = document.querySelectorAll('.btn');
+
+let playerScore = 0;
+let compScore = 0;
+
+const player = document.querySelector("#player-score");
+player.textContent = `Player Score: ${playerScore}`;
+const computer = document.querySelector("#comp-score");
+computer.textContent = `Computer Score: ${compScore}`;
+const output = document.querySelector('.output');
+output.textContent = "Ready?";
+
 
 // Function to randomly pull a computer's choice from the array
 function getComputerChoice () {
     let cpuChoice = choices[Math.floor(Math.random() * choices.length)];
-    return cpuChoice.toUpperCase();
+    return cpuChoice;
 }
 
-// Function to get the player's choice from the input 
-function getPlayerSelection () {
-    let playerChoice = prompt("Please Select Rock, Paper, or Scissors");
+buttons.forEach((button)=>{button.addEventListener('click',()=>{
 
- if (playerChoice.toUpperCase() === "ROCK" || playerChoice.toUpperCase() === "PAPER"|| playerChoice.toUpperCase() === "SCISSORS") {
-        return playerChoice.toUpperCase();
-    } else {
-        prompt("Please try again! Select Rock, Paper, or Scissors");
+    playerSelections = button.id;
+    if (playerSelections == "ROCK"){
+        playerSelections = "ROCK";
     }
-}
+    else if (playerSelections == "PAPER"){
+        playerSelections = "PAPER";
+    }
+    else if (playerSelections == "SCISSORS")
+        playerSelections = "SCISSORS";
+        game();
+        })
+});
+
 
 // Function to play a round of the game and prints the result in the console
 function playRound () {
-    getPlayerSelection();
     getComputerChoice();
 
-   if (playerChoice == "ROCK" && cpuChoice == "SCISSORS")
-     { console.log(`You Win! ${playerChoice} Beats ${cpuChoice}`);}
-    else if (playerChoice == "SCISSORS" && cpuChoice == "PAPER") {
-        console.log(`You Win! ${playerChoice} Beats ${cpuChoice}`)
+   if (playerSelections == "ROCK" && cpuChoice == "SCISSORS")
+     { output.textContent = `You Win! ${playerSelections} Beats ${cpuChoice}`;
+     playerScore++;}
+    else if (playerSelections == "SCISSORS" && cpuChoice == "PAPER") {
+        
+        output.textContent = `You Win! ${playerSelections} Beats ${cpuChoice}`;
+        playerScore++;
     }
-    else if (playerChoice == "PAPER" && cpuChoice == "ROCK") {
-        console.log(`You Win! ${playerChoice} Beats ${cpuChoice}`)
+    else if (playerSelections == "PAPER" && cpuChoice == "ROCK") {
+        output.textContent = `You Win! ${playerSelections} Beats ${cpuChoice}`;
+        playerScore++;
+
     }
-    else if (playerChoice == "ROCK" && cpuChoice == "PAPER") {
-        console.log(`You Lose! ${cpuChoice} Beats ${playerChoice}`)
+    else if (playerSelections == "ROCK" && cpuChoice == "PAPER") {
+        output.textContent = `You Lose! ${cpuChoice} Beats ${playerSelections}`;
+        compScore++;
     }
-    else if (playerChoice == "SCISSORS" && cpuChoice == " ROCK") {
-        console.log(`You Lose! ${cpuChoice} Beats ${playerChoice}`)
+    else if (playerSelections == "SCISSORS" && cpuChoice == " ROCK") {
+        output.textContent = `You Lose! ${cpuChoice} Beats ${playerSelections}`;
+        compScore++;
     }
-    else if (playerChoice == "PAPER" && cpuChoice == "SCISSORS") {
-        console.log(`You Lose! ${cpuChoice} Beats ${playerChoice}`)
-    }else if (playerChoice == "PAPER" && cpuChoice == "SCISSORS") {
-        console.log(`You Lose! ${cpuChoice} Beats ${playerChoice}`)
+    else if (playerSelections == "PAPER" && cpuChoice == "SCISSORS") {
+        output.textContent = `You Lose! ${cpuChoice} Beats ${playerSelections}`;
+        compScore++;
+    }else if (playerSelections == "PAPER" && cpuChoice == "SCISSORS") {
+        output.textContent = `You Lose! ${cpuChoice} Beats ${playerSelections}`;
+        compScore++;
     }else {
-        console.log(`Its A Draw! Player Picked ${playerChoice} and Computer picked ${cpuChoice}`)
+        output.textContent = `Its A Draw! Player Picked ${playerSelections} and Computer picked ${cpuChoice}`
     }
 }
 
 // Funtcion to run a game of 5 rounds
 function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound());
-        reset();
-     }
+    output.textContent = "Choose Rock, Paper, or Scissors";
+    playRound();
+        player.textContent = `Player Score: ${playerScore}`;
+        computer.textContent = `Computer Score: ${compScore}`;
+        if (playerScore == 5){
+            output.textContent = "You Won the Game! Congrats!";
+            playerScore = 0;
+            compScore = 0;
+            player.textContent = `Player Score: ${playerScore}`;
+            computer.textContent = `Computer Score: ${compScore}`;
+        }
+        else if (compScore == 5){
+            output.textContent = "You Lost the game! You Suck.... Tomato Tomato!"
+            playerScore = 0;
+            compScore = 0;
+            player.textContent = `Player Score: ${playerScore}`;
+            computer.textContent = `Computer Score: ${compScore}`;
+        }
 }
 
-// Function to reset the game before playing again
-function reset() {
-    cpuChoice = getComputerChoice();
-    return cpuChoice;
-}
 
-game();
+
