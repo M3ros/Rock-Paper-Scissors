@@ -1,15 +1,13 @@
 const options = ["ROCK", "PAPER", "SCISSORS"];
 // let playerSelection = getPlayerChoice();
 
-
-
 function getComputerChoice() {
-    return options[Math.floor(Math.random() * options.length)];
+  return options[Math.floor(Math.random() * options.length)];
 }
 
 function getPlayerChoice() {
-    let playerChoice = prompt("Rock, Paper, or Scissors")
-    return playerChoice.toUpperCase();
+  let playerChoice = prompt("Rock, Paper, or Scissors");
+  return playerChoice.toUpperCase();
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -29,10 +27,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-for (let i = 0; i < 5; i++ ){
+  for (let i = 0; i < 5; i++) {
     let computerSelection = getComputerChoice();
     let playerSelection = getPlayerChoice();
     playRound(playerSelection, computerSelection);
-}}
+  }
+}
 
 game();
