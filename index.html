@@ -9,9 +9,10 @@
   </head>
   <body>
     <div class="choices">
-      <button onclick="game()";">Rock</button>
-      <button class="btn" id="Paper">Paper</button>
-      <button class="btn" id="Scissors">Scissors</button>
+      <button onclick="game()" class="btn" id="Rock">Rock</button>
+      <button onclick="game()" class="btn" id="Paper">Paper</button>
+      <button onclick="game()" class="btn" id="Scissors">Scissors</button>
+      <button onclick="newGame()" class="btn" id="Scissors">New Game</button>
     </div>
 
     <div class="scores">
@@ -19,6 +20,7 @@
       <h2 id="pScore">0</h1>
       <h1 id="cpuScore">CPU Socre</h1>
       <h2 id="cScore">0</h1>
+      <h1 id="winner">Winner:</h1>
     </div>
   </body>
   <script src="script.js"></script>
